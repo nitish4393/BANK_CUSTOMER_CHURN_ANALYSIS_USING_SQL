@@ -8,7 +8,7 @@ Understanding and predicting bank customer churn is crucial for banks to proacti
 
 # ABOUT DATA
 
-## IN THIS  
+## IN THIS  DATASET WE HAVE 12 COLUMN WITH 10000 ROWS
 
 This dataset is for ABC Multistate bank with following columns:
 
@@ -25,7 +25,9 @@ active_member,
 estimated_salary,
 churn
 
-Below is the customer data of account holders at ABC Multinational Bank and the aim of the data will be predicting the Customer Churn.
+# AIM
+
+The aim of the data will be predicting the Customer Churn.
 
 
 
