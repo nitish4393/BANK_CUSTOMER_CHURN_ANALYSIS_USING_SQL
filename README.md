@@ -77,8 +77,8 @@ set credit_score_category = CASE
     ELSE 'Poor'
   END ;
 
-  - Modify the data type of the age_category column in the bank_customer_churn table to varchar(20). This allows for storing more descriptive category labels.
-  - Update the age_category values by categorizing customers based on their age ranges using a CASE statement. This enhances data organization and facilitates further analysis.
+  -- Modify the data type of the age_category column in the bank_customer_churn table to varchar(20). This allows for storing more descriptive category labels.
+  -- Update the age_category values by categorizing customers based on their age ranges using a CASE statement. This enhances data organization and facilitates further analysis.
   
 alter table bank_customer_churn
 modify age_category varchar(20);
