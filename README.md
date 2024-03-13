@@ -133,12 +133,14 @@ group by gender;
 <img width="128" alt="Screenshot 2024-03-14 004449" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/65a8fd69-23cf-40fd-a3b2-7f15fc28a147">
 
 ```sql
-select country,count(case when churn=1 then 1 end ) as tot
+select country,count(case when churn=1 then 1 end ) as tot_churn_customer
 from bank_customer_churn
 group by country
-order by tot desc;
+order by tot_churn_customer desc;
 ```
 <img width="142" alt="Screenshot 2024-03-14 004659" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/f327b611-c354-4c9c-92f2-ed44a4f6ba97">
+
+
 
 
 
