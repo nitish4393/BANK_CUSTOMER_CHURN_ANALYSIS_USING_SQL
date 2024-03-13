@@ -6,6 +6,9 @@ Bank customer churn, also known as customer attrition, refers to the phenomenon 
 
 Understanding and predicting bank customer churn is crucial for banks to proactively manage customer relationships, improve customer satisfaction, and reduce revenue loss. By identifying customers who are at a higher risk of churning, banks can implement targeted retention strategies, personalized marketing campaigns, and tailored customer service to mitigate churn and enhance customer loyalty.
 
+![bank_project](https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/4d437e77-4236-4ebd-abcc-51e3ff35acb1)
+
+
 # ABOUT DATA :-
 
 ## IN THIS  DATASET WE HAVE 12 COLUMN WITH 10000 ROWS
@@ -140,7 +143,7 @@ order by tot_churn_customer desc;
 ```
 <img width="142" alt="Screenshot 2024-03-14 004659" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/f327b611-c354-4c9c-92f2-ed44a4f6ba97">
 
- -  Are there any correlations between the input variables and churn?
+ ###  Are there any correlations between the input variables and churn?
    - Approximately 81% of churn is contributed by customers categorized under the credit score categories of 'Poor', 'Fair', and 'Good'.
    - Among the total of 2037 churned customers, Middle-aged Adults accounted for 1279 (approximately 62.82%), while Mature Adults
       contributed 591 (approximately 29.01%) to the churn rate.
