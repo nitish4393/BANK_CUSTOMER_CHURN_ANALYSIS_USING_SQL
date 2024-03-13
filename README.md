@@ -54,7 +54,7 @@ select count(*) from bank_customer_churn;
 
 <img width="108" alt="Screenshot 2024-03-13 233842" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/2f37a04c-9f11-48fd-8c6e-ef9ee979fd44">
 
--- Are there any missing values in the dataset?
+### Q]Are there any missing values in the dataset?
 
    select count(distinct customer_id) AS TOTAL_UNIQUE_RECORDS
     from bank_customer_churn;
