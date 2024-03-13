@@ -49,8 +49,8 @@ estimated_salary float,
 churn int)
 
 # A] Overview of the dataset:
-``SQL
-select count(*) from bank_customer_churn;``
+This is an inline SQL code snippet:
+`select count(*) from bank_customer_churn;`
 
 <img width="108" alt="Screenshot 2024-03-13 233842" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/2f37a04c-9f11-48fd-8c6e-ef9ee979fd44">
 
