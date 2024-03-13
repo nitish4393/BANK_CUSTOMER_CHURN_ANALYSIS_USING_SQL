@@ -140,6 +140,12 @@ order by tot_churn_customer desc;
 ```
 <img width="142" alt="Screenshot 2024-03-14 004659" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/f327b611-c354-4c9c-92f2-ed44a4f6ba97">
 
+ -  Are there any correlations between the input variables and churn?
+   - Approximately 81% of churn is contributed by customers categorized under the credit score categories of 'Poor', 'Fair', and 'Good'.
+   - Among the total of 2037 churned customers, Middle-aged Adults accounted for 1279 (approximately 62.82%), while Mature Adults
+      contributed 591 (approximately 29.01%) to the churn rate.
+   - Out of the 2037 churned customers, approximately 55.93% were Female, and approximately 44.07% were Male.
+   - Out of the 2037 churned customers, approximately 39.98% were from Germany, 39.75% were from France, and 20.27% were from Spain.
 
 
 
