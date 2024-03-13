@@ -49,7 +49,7 @@ estimated_salary float,
 churn int)
 
 # A] Overview of the dataset:
-This is an inline SQL code snippet:
+
 `select count(*) from bank_customer_churn;`
 
 <img width="108" alt="Screenshot 2024-03-13 233842" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/2f37a04c-9f11-48fd-8c6e-ef9ee979fd44">
@@ -93,6 +93,38 @@ set age_category=CASE
     ELSE 'Senior'
   END ;
   ```
+# B] Exploratory Data Analysis (EDA):
+
+
+## Q] What is the distribution of the target variable (churn)?
+```SQL
+select churn,count(churn) as tot ,
+concat(round(COUNT(churn) * 100.0 / SUM(COUNT(churn)) OVER (),2),'%') AS churn_percentage
+ FROM bank_customer_churn 
+group by churn;
+
+
+##  Q] How do the input variables (credit score, age, balance, etc.) vary with respect to churn?
+
+select credit_score_category,count(case when churn=1 then 1 end ) as tot
+from bank_customer_churn
+group by credit_score_category
+order by tot desc;
+
+select age_category,count(case when churn=1 then 1 end ) as tot
+from bank_customer_churn
+group by age_category
+order by tot desc;
+
+select gender,count(case when churn=1 then 1 end ) as tot
+from bank_customer_churn
+group by gender;
+
+select country,count(case when churn=1 then 1 end ) as tot
+from bank_customer_churn
+group by country
+order by tot desc;
+```
 
 
 
