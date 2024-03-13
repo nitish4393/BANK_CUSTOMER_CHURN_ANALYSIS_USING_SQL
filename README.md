@@ -102,29 +102,43 @@ select churn,count(churn) as tot ,
 concat(round(COUNT(churn) * 100.0 / SUM(COUNT(churn)) OVER (),2),'%') AS churn_percentage
  FROM bank_customer_churn 
 group by churn;
+```
+<img width="213" alt="Screenshot 2024-03-14 003713" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/9579372f-2502-4f15-98d1-68f0807585ff">
+
 
 
 ##  Q] How do the input variables (credit score, age, balance, etc.) vary with respect to churn?
 
-select credit_score_category,count(case when churn=1 then 1 end ) as tot
+```SQL
+select credit_score_category,count(case when churn=1 then 1 end ) as tot_churn_customer
 from bank_customer_churn
 group by credit_score_category
-order by tot desc;
+order by tot_churn_customer desc;
+```
+<img width="185" alt="Screenshot 2024-03-14 003919" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/5634ff7c-d1e7-4367-a1db-91ad65573ce9">
 
-select age_category,count(case when churn=1 then 1 end ) as tot
+```sql
+select age_category,count(case when churn=1 then 1 end ) as tot_customer_churn
 from bank_customer_churn
 group by age_category
-order by tot desc;
+order by tot_customer_churn desc;
+```
+<img width="166" alt="Screenshot 2024-03-14 004329" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/633185f0-721d-4273-a7af-ad3a075bdaa2">
 
-select gender,count(case when churn=1 then 1 end ) as tot
+```sql
+select gender,count(case when churn=1 then 1 end ) as tot_churn_customer
 from bank_customer_churn
 group by gender;
+```
+<img width="128" alt="Screenshot 2024-03-14 004449" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/65a8fd69-23cf-40fd-a3b2-7f15fc28a147">
 
+```sql
 select country,count(case when churn=1 then 1 end ) as tot
 from bank_customer_churn
 group by country
 order by tot desc;
 ```
+<img width="142" alt="Screenshot 2024-03-14 004659" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/f327b611-c354-4c9c-92f2-ed44a4f6ba97">
 
 
 
