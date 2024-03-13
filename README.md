@@ -83,15 +83,15 @@ set credit_score_category = CASE
 `alter table bank_customer_churn
 modify age_category varchar(20);`
 
-
-`update bank_customer_churn
+```SQL
+update bank_customer_churn
 set age_category=CASE
     WHEN age < 18 THEN 'Minor'
     WHEN age >= 18 AND age < 30 THEN 'Young Adult'
     WHEN age >= 30 AND age < 50 THEN 'Middle-aged Adult'
     WHEN age >= 50 AND age < 65 THEN 'Mature Adult'
     ELSE 'Senior'
-  END ;`
+  END ;
   
 
 
