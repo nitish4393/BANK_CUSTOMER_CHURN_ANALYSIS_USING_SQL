@@ -56,8 +56,8 @@ select count(*) from bank_customer_churn;
 
 ### Q]Are there any missing values in the dataset?
 
-   [select count(distinct customer_id) AS TOTAL_UNIQUE_RECORDS
-    from bank_customer_churn;]
+   ''' select count(distinct customer_id) AS TOTAL_UNIQUE_RECORDS
+    from bank_customer_churn; '''
   
    - NO THERE ARE NO MISSING ITEMS
 <img width="135" alt="Screenshot 2024-03-13 234320" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/92e871f8-2ab4-42c9-a0bf-243befbada1b">
