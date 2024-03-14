@@ -217,9 +217,79 @@ order by tot_churn_customer desc) as x;
     - high churn rate observed in product categories 3 and 4. This could involve factors like product pricing,
       competition, customer service quality, or lack of features.
 
+# E] Customer behavior analysis:
 
+### Q] How does tenure (length of time as a customer) vary with churn?
 
+```SQL
+SELECT tenure,count(case when churn=1 then 1 end ) as tot_churn_customer
+from bank_customer_churn
+group by tenure
+order by tot_churn_customer desc;
+```
 
+###  Q] Do active members have lower churn rates compared to inactive members?
+
+```SQL
+select active_member,CONCAT(round(tot_churn_customer/tot,2) * 100,'%') as churn_rates from(
+SELECT active_member,count(case when churn=1  then 1 end ) as tot_churn_customer,
+count(*) tot
+from bank_customer_churn
+group by active_member
+order by active_member desc) x;
+```
+<img width="135" alt="Screenshot 2024-03-14 100642" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/94d06904-4ebb-4bd7-a6f6-5f78991f20aa">
+
+- INSIGHTS
+   - Customers who are not active members (active_member = 0) have a higher churn rate at approximately 27.00%.
+     Customers who are active members (active_member = 1) have a lower churn rate at approximately 14.00%.
+   - Being an active member appears to be associated with a lower churn rate compared to inactive membership.
+     This suggests that active engagement with the bank's services may contribute to higher customer retention rates.
+
+### Are there any specific customer segments that are more prone to churn, and how can the bank address their needs?
+
+```SQL
+     WITH churn_data AS (
+  SELECT credit_score_category,
+         COUNT(CASE WHEN churn = 0 and active_member=0 THEN 1 END) AS tot
+  FROM bank_customer_churn
+  GROUP BY credit_score_category
+)
+SELECT
+  credit_score_category,tot,
+  round(tot * 100.0 / SUM(tot) OVER (),2) AS per
+FROM churn_data
+ORDER BY tot DESC;
+```
+<img width="218" alt="Screenshot 2024-03-14 102142" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/0ce8718f-2386-44c2-9c86-b45c929f3085">
+
+  - INSIGHT
+     - The distribution of churned customers by credit score category indicates that a significant proportion of churned customers
+        fall into the 'Fair', 'Poor', and 'Good' credit score categories.
+     - Customers with lower credit scores ('Fair' and 'Poor') contribute to a larger portion of churn compared to those with higher
+        credit scores ('Very Good' and 'Excellent').
+     
+ # RECOMMENDATIONS
+   - Focus on Customer Engagement: Encourage inactive members to become more engaged with the bank's services by offering personalized incentives
+     , targeted promotions, and improved customer support. Actively communicate with customers to understand their needs and preferences better.
+
+   - Improve Product Offerings: Investigate the reasons behind the high churn rates observed in product categories 3 and 4. Conduct market research
+     to understand customer expectations, competitors' offerings, and areas for improvement. Consider adjusting product pricing, enhancing customer
+     service quality, or introducing new features to increase customer satisfaction and retention.
+
+   - Targeted Marketing and Retention Strategies: Develop targeted marketing campaigns and retention strategies tailored to different customer
+     segments based on factors such as credit score categories, age groups, and gender. Offer customized products, services, and incentives to
+     address the specific needs and preferences of each segment.
+
+   - Enhance Customer Service Quality: Invest in training and development programs to improve the quality of customer service provided by bank staff.
+     Implement systems for collecting and analyzing customer feedback to identify areas for improvement and ensure timely resolution of customer issues.
+
+   - Monitor and Address Churn Contributors: Continuously monitor key factors contributing to churn, such as credit score categories, age groups, and gender.
+     Implement proactive measures to address these contributors, such as targeted interventions, loyalty programs, and product enhancements.Conduct
+      focus groups or surveys with customers from 'Fair', 'Poor', and 'Good' credit score segments to understand their pain points and unmet needs.
+
+   - Expand Market Reach: While France currently has the highest number of total customers, consider strategies to expand market reach in other regions,
+      such as Germany and Spain. Develop localized marketing campaigns and product offerings to attract and retain customers in these regions.
 
 
       
