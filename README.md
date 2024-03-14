@@ -2,9 +2,14 @@
 
 # What is Bank Churn?
 
-Bank customer churn, also known as customer attrition, refers to the phenomenon where customers stop doing business with a bank or switch to another bank. Churn is a critical metric for banks as it directly impacts their customer base and revenue. Customer churn can occur due to various reasons, such as dissatisfaction with services, better offers from competitors, changes in financial needs, or poor customer experiences.
+Bank customer churn, also known as customer attrition, refers to the phenomenon where customers stop doing business with
+a bank or switch to another bank. Churn is a critical metric for banks as it directly impacts their customer base and revenue.
+Customer churn can occur due to various reasons, such as dissatisfaction with services, better offers from competitors, 
+changes in financial needs, or poor customer experiences.
 
-Understanding and predicting bank customer churn is crucial for banks to proactively manage customer relationships, improve customer satisfaction, and reduce revenue loss. By identifying customers who are at a higher risk of churning, banks can implement targeted retention strategies, personalized marketing campaigns, and tailored customer service to mitigate churn and enhance customer loyalty.
+Understanding and predicting bank customer churn is crucial for banks to proactively manage customer relationships, improve customer
+satisfaction, and reduce revenue loss. By identifying customers who are at a higher risk of churning, banks can implement targeted
+retention strategies, personalized marketing campaigns, and tailored customer service to mitigate churn and enhance customer loyalty.
 
 ![bank_project](https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/4d437e77-4236-4ebd-abcc-51e3ff35acb1)
 
@@ -33,7 +38,7 @@ churn
 The aim of the data will be predicting the Customer Churn.
 
 # ANALYSIS :-
-
+```sql
 create database portfoli;
 use portfoli;
 
@@ -50,17 +55,21 @@ credit_card int,
 active_member int,
 estimated_salary float,
 churn int)
+```
 
 # A] Overview of the dataset:
 
-`select count(*) from bank_customer_churn;`
+```sql
+select count(*) from bank_customer_churn;
+```
 
 <img width="108" alt="Screenshot 2024-03-13 233842" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/2f37a04c-9f11-48fd-8c6e-ef9ee979fd44">
 
 ### Q]Are there any missing values in the dataset?
-
- `select count(distinct customer_id) AS TOTAL_UNIQUE_RECORDS
- from bank_customer_churn;`
+```sql
+ select count(distinct customer_id) AS TOTAL_UNIQUE_RECORDS
+ from bank_customer_churn;
+```
   
    - NO THERE ARE NO MISSING ITEMS
 <img width="135" alt="Screenshot 2024-03-13 234320" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/92e871f8-2ab4-42c9-a0bf-243befbada1b">
@@ -80,8 +89,10 @@ set credit_score_category = CASE
     ELSE 'Poor'
   END ;
 
-  -- Modify the data type of the age_category column in the bank_customer_churn table to varchar(20). This allows for storing more descriptive category labels.
-  -- Update the age_category values by categorizing customers based on their age ranges using a CASE statement. This enhances data organization and facilitates further analysis.
+  -- Modify the data type of the age_category column in the bank_customer_churn table to varchar(20). This allows for
+     storing more descriptive category labels.
+  -- Update the age_category values by categorizing customers based on their age ranges using a CASE statement. This enhances
+     data organization and facilitates further analysis.
   
 alter table bank_customer_churn
 modify age_category varchar(20);
@@ -143,13 +154,75 @@ order by tot_churn_customer desc;
 ```
 <img width="142" alt="Screenshot 2024-03-14 004659" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/f327b611-c354-4c9c-92f2-ed44a4f6ba97">
 
- ###  Q]Are there any correlations between the input variables and churn?
+ ###  Q] Are there any correlations between the input variables and churn?
  
    - Approximately 81% of churn is contributed by customers categorized under the credit score categories of 'Poor', 'Fair', and 'Good'.
    - Among the total of 2037 churned customers, Middle-aged Adults accounted for 1279 (approximately 62.82%), while Mature Adults
-      contributed 591 (approximately 29.01%) to the churn rate.
+     contributed 591 (approximately 29.01%) to the churn rate.
    - Out of the 2037 churned customers, approximately 55.93% were Female, and approximately 44.07% were Male.
    - Out of the 2037 churned customers, approximately 39.98% were from Germany, 39.75% were from France, and 20.27% were from Spain.
+
+# c] Customer demographics analysis:
+
+ ### Q] What is the distribution of customers by  country?
+   ```SQL
+   select country,count(*) as TOT_CUSTOMER
+   from bank_customer_churn
+   group by country
+   ORDER BY TOT_CUSTOMER DESC;
+   ```
+<img width="124" alt="Screenshot 2024-03-14 085016" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/e0aec43c-451a-4858-b6be-aae832b33329">
+
+ ### Q] How does churn vary across different demographic groups?
+
+```sql
+select country,count(case when churn=1 then 1 end ) as tot_churn_customer
+from bank_customer_churn
+group by country
+order by tot_churn_customer desc;
+```
+<img width="133" alt="Screenshot 2024-03-14 085659" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/fe17feff-2b5a-45f3-af25-29561b6246bd">
+
+  - INSIGHT
+    - France has the highest number of total customers.
+    - Germany has the highest number of churned customers, followed closely by France and then Spain.
+    - Despite having a lower total number of customers compared to France, Germany has a higher number of churned customers,
+      indicating a potentially higher churn rate.
+
+# d] Product and service analysis:
+
+ ### What is the distribution of customers by the number of products they have?
+```sql
+select products_number,count(*) as tot_customer
+from bank_customer_churn
+group by products_number
+order by tot_customer desc;
+```
+<img width="140" alt="Screenshot 2024-03-14 091952" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/7bf29864-aa65-40b3-976b-201904a55ea1">
+
+
+### How does churn vary based on the number of products a customer has?
+```sql
+select products_number,tot_churn_customer,tot_customer,
+concat(round((tot_churn_customer / tot_customer) * 100,1),' %') as churn_rate from
+(select products_number,count(case when churn=1 then 1 end ) as tot_churn_customer,count(*) as tot_customer
+from bank_customer_churn
+group by products_number
+order by tot_churn_customer desc) as x;
+```
+<img width="274" alt="Screenshot 2024-03-14 093134" src="https://github.com/nitish4393/BANK_CUSTOMER_CHURN_ANALYSIS_USING_SQL/assets/120879393/a32b796f-16c0-4407-99c6-1d7a8f527e60">
+
+
+  - INSIGHT
+    - high churn rate observed in product categories 3 and 4. This could involve factors like product pricing,
+      competition, customer service quality, or lack of features.
+
+
+
+
+
+
+      
 
 
 
