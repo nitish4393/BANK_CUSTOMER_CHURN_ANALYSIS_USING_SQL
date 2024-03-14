@@ -268,6 +268,10 @@ ORDER BY tot DESC;
         fall into the 'Fair', 'Poor', and 'Good' credit score categories.
      - Customers with lower credit scores ('Fair' and 'Poor') contribute to a larger portion of churn compared to those with higher
         credit scores ('Very Good' and 'Excellent').
+ # PREDICTION 
+ 
+  - Out of the total 7963 customers, approximately 31% of them, who are categorized under the 'Fair', 'Poor', and 'Good' credit score
+    categories and are currently inactive, are at risk of churning.
      
  # RECOMMENDATIONS
    - Focus on Customer Engagement: Encourage inactive members to become more engaged with the bank's services by offering personalized incentives
