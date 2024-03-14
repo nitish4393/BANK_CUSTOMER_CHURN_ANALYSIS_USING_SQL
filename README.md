@@ -16,7 +16,7 @@ retention strategies, personalized marketing campaigns, and tailored customer se
 
 # ABOUT DATA :-
 
-## IN THIS  DATASET WE HAVE 12 COLUMN WITH 10000 ROWS
+ - IN THIS  DATASET WE HAVE 12 COLUMN WITH 10000 ROWS
 
 This dataset is for ABC Multistate bank with following columns:
 
